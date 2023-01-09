@@ -17,7 +17,7 @@ entry = namelist.split(", ")
 
 # Set up the Google Sheets API client
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-credentials = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope)
+credentials = ServiceAccountCredentials.from_json_keyfile_name('./credentials.json', scope)
 gc = gspread.authorize(credentials)
 
 # Open the Google Sheet
@@ -52,7 +52,7 @@ def extractupdateID(url, bot):
         text = values[2]
         chat_id = values[0]
         username = values[1]
-        message =f'Hi, {username} \n 🔹Use "/add row col data" to add data \n 🔹use "/list" to list all student names with roll number \n 🔹use "/check rollnumber" to list the entries of a student. \n'
+        message =f'Hi, {username} \n 🔹Use "/add row col data" to add data \n 🔹use "/list" to list all student names with roll number \n 🔹use "/check rollnumber" to list the entries of a student. \n 🔹use "/del row col" to delete the data of a student.'
         requests.get(url=f"https://api.telegram.org/bot5846355924:AAG00YOmBunjEs9jWNSwQBkf6zX_3b3maII/sendMessage?chat_id={chat_id}&text={message}")
         return text
     else:
@@ -112,10 +112,29 @@ def rollList(list, rolllist): #get roll number list
         send_message = requests.get(url=f"https://api.telegram.org/bot5846355924:AAG00YOmBunjEs9jWNSwQBkf6zX_3b3maII/sendMessage?chat_id={chat_id}&text={rolllist}")
     else:
         return
+
+def delete(row, col):
+    if accesscontrol() == True:
+        values = getValues()
+        input_text = values[2]
+        chat_id = values[0]
+
+        input_parts = input_text.split(' ')
+
+        row = int(input_parts[1]) + 1
+        col = int(input_parts[2])
+        val = sheet.cell(row, 1).value
+        studentName = val
+        sheet.update_cell(row, col, '')
+
+        msg = f"Successfully deleted {studentName}'s value at column {col}."
+        send_message = requests.get(url=f"https://api.telegram.org/bot5846355924:AAG00YOmBunjEs9jWNSwQBkf6zX_3b3maII/sendMessage?chat_id={chat_id}&text={msg}")
+
 # # Set the bot to listen for messages that start with the '/add' command
 application = Application.builder().token(tok).build()
 application.add_handler(CommandHandler('start', extractupdateID))
 application.add_handler(CommandHandler('add', handle_text))
 application.add_handler(CommandHandler('list', rollList))
 application.add_handler(CommandHandler('check', checkEntry))
+application.add_handler(CommandHandler('del', delete))
 application.run_polling()
