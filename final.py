@@ -52,7 +52,7 @@ def extractupdateID(url, bot):
         text = values[2]
         chat_id = values[0]
         username = values[1]
-        message =f'Hi, {username} \n 🔹Use "/add row col data" to add data \n 🔹use "/list" to list all student names with roll number \n 🔹use "/check rollnumber" to list the entries of a student. \n 🔹use "/del row col" to delete the data of a student.'
+        message =f'Hi, {username} \n 🔹Use "/add row col data" to add data \n 🔹use "/list" to list all student names with roll number \n 🔹use "/check rollnumber" to list the entries of a student \n 🔹use "/del row col" to delete the data of a student \n 🔹use "/toal collected col" to get total amount collected for a specific need.'
         requests.get(url=f"https://api.telegram.org/bot5846355924:AAG00YOmBunjEs9jWNSwQBkf6zX_3b3maII/sendMessage?chat_id={chat_id}&text={message}")
         return text
     else:
@@ -131,6 +131,19 @@ def delete(row, col):
         msg = f"Successfully deleted {studentName}'s entry of {col_head}."
         send_message = requests.get(url=f"https://api.telegram.org/bot5846355924:AAG00YOmBunjEs9jWNSwQBkf6zX_3b3maII/sendMessage?chat_id={chat_id}&text={msg}")
 
+def total(row, col):
+    values = getValues()
+    input_text = values[2]
+    chat_id = values[0]
+
+    input_parts = input_text.split(' ')
+    row = 65
+    col = int(input_parts[2])
+    val = sheet.cell(row, col).value
+    col_head = sheet.cell(1, col).value
+    msg = f'total amount collected till now for {col_head} is Rs: {val}.'
+    send_message = requests.get(url=f"https://api.telegram.org/bot5846355924:AAG00YOmBunjEs9jWNSwQBkf6zX_3b3maII/sendMessage?chat_id={chat_id}&text={msg}")
+
 # # Set the bot to listen for messages that start with the '/add' command
 application = Application.builder().token(tok).build()
 application.add_handler(CommandHandler('start', extractupdateID))
@@ -138,4 +151,5 @@ application.add_handler(CommandHandler('add', handle_text))
 application.add_handler(CommandHandler('list', rollList))
 application.add_handler(CommandHandler('check', checkEntry))
 application.add_handler(CommandHandler('del', delete))
+application.add_handler(CommandHandler('total', total))
 application.run_polling()
