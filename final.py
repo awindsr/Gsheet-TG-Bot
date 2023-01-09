@@ -52,7 +52,7 @@ def extractupdateID(url, bot):
         text = values[2]
         chat_id = values[0]
         username = values[1]
-        message =f'Hi, {username} \n 🔹Use "/add row col data" to add data \n 🔹use "/list" to list all student names with roll number \n 🔹use "/check rollnumber" to list the entries of a student \n 🔹use "/del row col" to delete the data of a student \n 🔹use "/toal collected col" to get total amount collected for a specific need.'
+        message =f'Hi, {username} \n 🔹Use "/add row col data" to add data \n 🔹use "/list" to list all student names with roll number \n 🔹use "/check rollnumber" to list the entries of a student \n 🔹use "/del row col" to delete the data of a student \n 🔹use "/total collected col" to get total amount collected for a specific need.'
         requests.get(url=f"https://api.telegram.org/bot5846355924:AAG00YOmBunjEs9jWNSwQBkf6zX_3b3maII/sendMessage?chat_id={chat_id}&text={message}")
         return text
     else:
