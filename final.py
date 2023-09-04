@@ -11,7 +11,7 @@ tok = ""
 bot = telegram.Bot(token=tok)
 
 #student's list according to roll number
-namelist = "1.Adithya P Binu, 2.Adithya Raj, 3.ADITHYAN BIJU, 4.ADVAIT ARJIT S, 5.AGNUS JOSE, 6.ALAN K B, 7.ALAN LEEJOY, 8.ALEENA V SUNIL, 9.ALEN JOJIMON10, 10.Alen Siju Mudakodil, 11.ALENE ELSA JOSE, 12.ALTHAF RAHMAN, 13.ALWIN JIMMY THOMAS, 14.Amal Joy, 15.ANITA MARY JOSEPH, 16.Anumol V S, 17.Anush S Kumar, 18.AwinDas R, 19.BAINA ELSA BIJU, 20.Basil Vazhathottathil, 21.Bijal T Benny, 22.CHRIS REJI KURIAKOSE, 23.Devika Rajeev, 24.Diya Benny, 25.DONEY SIBY, 26.Elna S Bijo, 27.Emitta Mathew, 28.FAHAD RASHEED, 29.FELIX JOBI, 30.GITHIN CIRIL, 31.Gowrikrishna C, 32.JEEVA GEORGE SEBASTIAN, 33.Jeswin Jose, 34.Jeswin sabu, 35.Jibin Gigi, 36.JISMI SAJU, 37.JO SAJI, 38.Jose Thomas, 39.Kevin Biju Kulangara, 40.LIDIYA REJU, 41.Manu Emmanuel, 42.Maria Rose Alex, 43.Muhammed farhan, 44.NAGARAJ MENON K S, 45.Nandagopan L, 46.Naveen Ajesh, 47.Neha Maria Joji, 48.Nikita Ajay, 49.NYGIL JOHNS JOY, 50.Parvathi KB, 51.PRAPANCH J, 52.Praveen Rajan, 53.REVATHY BIJU, 54.RICHARD M MATHEW, 55.Rony Sebastian Tomson, 56.Sarya Sajeev, 57.Sharon Sell Norbert, 58.SHRAYA S SANTHOSH, 59.Siya Varghese, 60.Stephin Mathew, 61.STEVE MARAUTHOOR THOMAS, 62.THOMAS MATHEW, 63.THOMAS VARGHESE"
+namelist = ""
 entry = namelist.split(", ")
 
 
