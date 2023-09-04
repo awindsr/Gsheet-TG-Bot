@@ -7,7 +7,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 #Credentials
 # Replace TOKEN with your bot's API token
-tok = "5846355924:AAG00YOmBunjEs9jWNSwQBkf6zX_3b3maII"
+tok = ""
 bot = telegram.Bot(token=tok)
 
 #student's list according to roll number
